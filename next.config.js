@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const API_KEY = process.env.API_KEY;
 
+const BASE_URL = "https://api.themoviedb.org/3";
+
 const nextConfig = {
   images: {
     domains: ["image.tmdb.org"],
@@ -26,12 +28,20 @@ const nextConfig = {
     return [
       {
         source: '/api/movies',
-        destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
+        destination: `${BASE_URL}/movie/popular?api_key=${API_KEY}`
       },
       {
         source: '/api/movie/:id', // /api/movie/12
-        destination: `https://api.themoviedb.org/3/movie/:id?api_key=${API_KEY}`
-      }
+        destination: `${BASE_URL}/movie/:id?api_key=${API_KEY}`
+      },
+      {
+        source: '/api/tv',
+        destination: `${BASE_URL}/tv/popular?api_key=${API_KEY}`
+      },
+      {
+        source: '/api/tv/:id',
+        destination: `${BASE_URL}/tv/:id?api_key=${API_KEY}`
+      },
     ]
   }
 }

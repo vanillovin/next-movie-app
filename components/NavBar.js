@@ -22,11 +22,11 @@ export default function NavBar() {
             'text-blue-500': router.pathname === "/"
           })}>Home</a>
         </Link>
-        <Link href="/about">
+        <Link href="/tv">
           <a className={classnames('', { 
-            'font-medium': router.pathname === "/about",
-            'text-blue-500': router.pathname === "/about",
-          })}>About</a>
+            'font-medium': router.pathname === "/tv",
+            'text-blue-500': router.pathname === "/tv",
+          })}>TV</a>
         </Link>
       </div>
     </nav>

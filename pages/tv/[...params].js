@@ -1,12 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
 import Seo from '../../components/Seo';
 
 const BASE_URL = "https://image.tmdb.org/t/p/original/";
 
 export default function Detail({ data, params }) {
-  console.log(data, '/ params:', params);
+  // console.log('tv data', data, '/ params:', params);
   const [title, id] = params; 
   return (
     <div className='px-2 py-5'>
@@ -38,8 +37,8 @@ export default function Detail({ data, params }) {
 }
 
 export async function getServerSideProps({ params: { params } }) {
-  console.log(params);
-  const data = await (await fetch(`http://localhost:3000/api/movie/${params[1]}`)).json();
+  // console.log('tv parms', params);
+  const data = await (await fetch(`http://localhost:3000/api/tv/${params[1]}`)).json();
   return {
     props: {
       data,
