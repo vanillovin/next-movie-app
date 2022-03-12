@@ -1,49 +1,34 @@
 // NextJS 어플리케이션의 클라이언트 사이드 네비게이션을 제공
 import Link from 'next/link';
-
+import Image from 'next/image';
+import classnames from 'tailwindcss-classnames';
 import { useRouter } from 'next/router';
 
 export default function NavBar() {
   const router = useRouter();
   return (
-    <nav>
+    <nav className='flex flex-row align-middle justify-between px-6 py-5 shadow-2xl'>
       {/* public 파일 "../public" -> "/" */}
-      <img src="/vercel.svg" />
+      <Image
+        alt='vercel'
+        src="/vercel.svg"
+        width={80}
+        height={20}
+      />
       <div>
         <Link href="/">
-          <a className={router.pathname === "/" ? "active" : ""}>Home</a>
+          <a className={classnames('mr-2', { 
+            'font-medium': router.pathname === "/",
+            'text-blue-500': router.pathname === "/"
+          })}>Home</a>
         </Link>
         <Link href="/about">
-          <a className={router.pathname === "/about" ? "active" : ""}>About</a>
+          <a className={classnames('', { 
+            'font-medium': router.pathname === "/about",
+            'text-blue-500': router.pathname === "/about",
+          })}>About</a>
         </Link>
       </div>
-      <style jsx>{`
-        nav {
-          display: flex;
-          gap: 10px;
-          flex-direction: column;
-          align-items: center;
-          padding-top: 20px;
-          padding-bottom: 10px;
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-            rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-        }
-        img {
-          max-width: 100px;
-          margin-bottom: 5px;
-        }
-        nav a {
-          font-weight: 600;
-          font-size: 18px;
-        }
-        .active {
-          color: tomato;
-        }
-        nav div {
-          display: flex;
-          gap: 10px;
-        }
-      `}</style>
     </nav>
   );
 }
